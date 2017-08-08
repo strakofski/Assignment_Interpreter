@@ -30,7 +30,7 @@ class SQLDatabase(IDatabase):
                 VALUES ("{empid}","{gender}","{age}","{sales}","{BMI}","{salary}","{birthday}"); """
                 sql_command = format_str.format(empid=d[0], gender=d[1], age=d[2], sales=d[3], BMI=d[4], salary=d[5],birthday=d[6])
                 self.execute_sql(sql_command)
-        except TypeError as e:
+        except IndexError as e:
             print(e)
 
         self.commit()

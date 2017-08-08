@@ -1,11 +1,13 @@
 from cmd import *
 from Database.SQLDatabase import *
 from FileManagement.FileHandler import *
+from Graph import *
 
 
 class Interpreter(Cmd):
     file_handler = FileHandler()
     active_data = None
+    graph = Graph()
     database = SQLDatabase()
 
     def do_write_data(self, args):
@@ -18,8 +20,8 @@ class Interpreter(Cmd):
 
     def do_save_file_to_database(self, args):
         print("Saving to database!")
-        filepath = args
-        data = self.file_handler.load_file(filepath)
+        file_path = args
+        data = self.file_handler.load_file(file_path)
         self.database.write_to_database(data)
 
     def do_backup_database(self, args):
@@ -29,15 +31,32 @@ class Interpreter(Cmd):
     def do_get_data(self, sql):
         self.database.execute_sql(sql)
         print(self.database.cursor.fetchall())
+        return self.database.cursor.fetchall()
 
+    # Brendan Holt
+    # get data by calling the command execute_sql
+    #
+    #
+    #
+    def do_display_graph(self, args):
+        print("This will display a graph once Brendan has implemented it!")
+        self.database.execute_sql("""select * from employee""")
+        data = self.database.cursor.fetchall()
+        print(data)
 
+    # Brendan Holt
+    #
+    #
+    def do_pickle_save(self, args):
+        print("save")
 
+    # Brendan Holt
+    #
+    #
+    def do_pickle_unpack(self, args):
+        print("loading")
 
-
-
-
-
-
+    # Help Commands
     def help_write_data(self):
         print("write_file <data>")
         print("Writes data to a file")
