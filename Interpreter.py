@@ -18,12 +18,9 @@ class Interpreter(Cmd):
 
     def do_save_file_to_database(self, args):
         print("Saving to database!")
-        data = []
         filepath = args
-        file_contents = self.file_handler.load_file(filepath)
-        print(file_contents)
-
-        #self.database.write_to_database(data)
+        data = self.file_handler.load_file(filepath)
+        self.database.write_to_database(data)
 
     def do_backup_database(self, args):
         data = self.database.backup_database()
@@ -32,6 +29,14 @@ class Interpreter(Cmd):
     def do_get_data(self, sql):
         self.database.execute_sql(sql)
         print(self.database.cursor.fetchall())
+
+
+
+
+
+
+
+
 
     def help_write_data(self):
         print("write_file <data>")
