@@ -14,10 +14,32 @@ class SQLDatabase(IDatabase):
         data = []
         for d in get_data:
             data.append(d)
+        print(data)
         return data
 
     def execute_sql(self, sql):
-        self.cursor.execute(sql)
+        try:
+            self.cursor.execute(sql)
+        except Exception as e:
+            print(e, "\nFor a list of tables, type help.")
+
+    def write_to_database(self, data):
+        try:
+            for d in data:
+                format_str = """INSERT INTO employee (EMPID, Gender, Age, Sales, BMI, Salary, Birthday) 
+                VALUES ("{empid}","{gender}","{age}","{sales}","{BMI}","{salary}","{birthday}"); """
+                sql_command = format_str.format(empid=d[0], gender=d[1], age=d[2], sales=d[3], BMI=d[4], salary=d[5],birthday=d[6])
+                self.execute_sql(sql_command)
+        except TypeError as e:
+            print(e)
+
+        self.commit()
+
+    def display_data(self):
+        self.execute_sql("""select * from employee""")
+        data = self.cursor.fetchall()
+        for d in data:
+            print(str(d))
 
     def close_connection(self):
         self.connection.close()
@@ -42,12 +64,7 @@ class SQLDatabase(IDatabase):
         """
         self.execute_sql(sql)
         self.commit()
-        for d in data:
-            format_str = """INSERT INTO employee (EMPID, Gender, Age, Sales, BMI, Salary, Birthday) 
-            VALUES ("{empid}","{gender}","{age}","{sales}","{BMI}","{salary}","{birthday}"); """
-            sql_command = format_str.format(empid=d[0], gender=d[1], age=d[2], sales=d[3], BMI=d[4], salary=d[5],birthday=d[6])
-            self.execute_sql(sql_command)
-
+        self.write_to_database(data)
         self.commit()
 
     def reset(self):
