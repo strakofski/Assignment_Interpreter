@@ -23,8 +23,12 @@ class FileHandler(IFileHandler):
         string = ""
         for l in data:
             new_data = [l[0], l[1], l[2], l[3], l[4], l[5], l[6]]
-            for d in new_data:
-                string += str(d)
+            for i in range(len(new_data)):
+                string += str(new_data[i])
+                #prevent a space at the end of a line
+                if i != len(new_data) - 1:
+                    string += ' '
+
 
             string += "\n"
         the_file.write(string)
