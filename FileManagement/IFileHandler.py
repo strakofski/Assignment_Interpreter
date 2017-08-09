@@ -9,3 +9,15 @@ class IFileHandler:
 
     @abstractmethod
     def write_file(self, file, data): raise NotImplementedError
+
+    @abstractmethod
+    def validate_data(self, data): raise NotImplementedError
+
+    @abstractmethod
+    def pack_pickle(self, file): raise NotImplementedError
+
+    @abstractmethod
+    def unpack_pickle(self, file): raise NotImplementedError
+
+    @abstractmethod
+    def validate_data(self, file): raise NotImplementedError

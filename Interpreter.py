@@ -5,10 +5,13 @@ from Graph import *
 
 
 class Interpreter(Cmd):
-    file_handler = FileHandler()
-    active_data = None
-    graph = Graph()
-    database = SQLDatabase()
+
+    def __init__(self):
+        Cmd.__init__(self)
+        self.file_handler = FileHandler()
+        self.active_data = None
+        self.graph = Graph()
+        self.database = SQLDatabase()
 
     def do_write_data(self, args):
         convert = tuple(args.split(','))
@@ -35,43 +38,36 @@ class Interpreter(Cmd):
 
     # Brendan Holt
     # get data by calling the command execute_sql
-    #
-    #
-    #
+    # data should be returned as an array holding tuples, keep this in mind
+    # feel free to add other graph commands e.g. def do_display_piechart(self, args)
+    # (args being data)
     def do_display_graph(self, args):
         print("This will display a graph once Brendan has implemented it!")
         self.database.execute_sql("""select * from employee""")
         data = self.database.cursor.fetchall()
-        print(data)
+        self.graph.do_something()
 
     # Brendan Holt
+    # write actual unpack code in the FileHandler class
     #
-    #
-    def do_pickle_save(self, args):
+    def do_pickle_pack(self, args):
         print("save")
+        self.file_handler.pack_pickle(args)
 
     # Brendan Holt
-    #
+    # write actual unpack code in the FileHandler class
     #
     def do_pickle_unpack(self, args):
-        print("loading")
+        self.file_handler.unpack_pickle(args)
 
-    # Help Commands
+    # Help Commands - Kate
+    # For each of the do_ commands above, print help info about them
+    # Following this format: help_function
+    # e.g. help_write_data(self):
+    # for info on what each function does, check out the help.doc file
     def help_write_data(self):
-        print("write_file <data>")
-        print("Writes data to a file")
-
-    def help_backup_database(self):
-        print("backup_database <filepath>")
-        print("Saves the Data to a text file")
-
-    def help_save_to_database(self):
-        print("save_to_database <filepath>")
-        print("Loads a file and saves data to the database.")
-
-    def help_get_data(self):
-        print("get_data <sql>")
-        print("Executes and SQL script.")
+        # Example for Kate
+        print("help on write data")
 
     def emptyline(self):
         pass

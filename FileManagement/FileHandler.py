@@ -1,4 +1,5 @@
 from FileManagement.IFileHandler import *
+from pickle import *
 
 
 class FileHandler(IFileHandler):
@@ -11,11 +12,10 @@ class FileHandler(IFileHandler):
         contents = []
         the_file = open(file, 'r')
         for line in the_file:
-            line = line.replace('\n',"")
-            line = line.split(',')
-            line = tuple(line)
+            line = tuple(line.replace('\n', "").split(','))
             contents.append(line)
         print(contents)
+        the_file.close()
         return contents
 
     def write_file(self, file, data):
@@ -31,6 +31,7 @@ class FileHandler(IFileHandler):
 
             string += "\n"
         the_file.write(string)
+        the_file.close()
 
     # Kate
     #
@@ -39,3 +40,16 @@ class FileHandler(IFileHandler):
     def validate_data(self, data):
         print("put code validation here")
         return data
+
+    # Brendan
+    #
+    #
+    #
+    def pack_pickle(self, file):
+        print("code here brendan")
+    # Brendan
+    #
+    #
+    #
+    def unpack_pickle(self, file):
+        print("code here brendan")
