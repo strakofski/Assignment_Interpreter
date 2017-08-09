@@ -21,16 +21,23 @@ class Interpreter(Cmd):
     def do_display_data(self, args):
         self.database.display_data()
 
+    # Kris Little
+    # - This function loads and saves data to the database
     def do_save_file_to_database(self, args):
         print("Saving to database!")
         file_path = args
         data = self.file_handler.load_file(file_path)
         self.database.write_to_database(data)
 
+    # Kris Little
+    # backup the database. This could be changed to use the pickle
+    # function brendan makes soon
     def do_backup_database(self, args):
         data = self.database.backup_database()
         self.file_handler.write_file(args, data)
 
+    # Kris
+    # This gets all data from the database
     def do_get_data(self, sql):
         self.database.execute_sql(sql)
         print(self.database.cursor.fetchall())
