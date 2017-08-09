@@ -3,8 +3,6 @@ from pickle import *
 
 
 class FileHandler(IFileHandler):
-    def __init__(self):
-        print("created")
 
     def load_file(self, file):
         # put error handling here
