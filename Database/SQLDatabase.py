@@ -35,12 +35,16 @@ class SQLDatabase(IDatabase):
             for d in data:
                 format_str = """INSERT INTO employee (EMPID, Gender, Age, Sales, BMI, Salary, Birthday) 
                 VALUES ("{empid}","{gender}","{age}","{sales}","{BMI}","{salary}","{birthday}"); """
-                sql_command = format_str.format(empid=d[0], gender=d[1], age=d[2], sales=d[3], BMI=d[4], salary=d[5],birthday=d[6])
+                sql_command = format_str.format(empid=d[0], gender=d[1], age=d[2], sales=d[3], BMI=d[4],
+                                                salary=d[5], birthday=d[6])
                 self.execute_sql(sql_command)
         except IndexError as e:
             print(e)
 
-        self.commit()
+        except TypeError:
+            print("The Data File did not exist. Check spelling/directory location")
+        else:
+            self.commit()
 
     def display_data(self):
         self.execute_sql("""select * from employee""")
@@ -55,7 +59,8 @@ class SQLDatabase(IDatabase):
         self.connection.commit()
 
     def setup(self):
-        data = [("e01","m","20","20","Normal","200","12-06-17"), ("e02","f","21","21","Underweight","201","12-07-17"), ("e03","m","22","22","Obesity","202","12-08-17")]
+        data = [("e01","m","20","20","Normal","200","12-06-17"), ("e02","f","21","21","Underweight","201","12-07-17"),
+                ("e03","m","22","22","Obesity","202","12-08-17")]
         self.execute_sql("""drop table if exists employee""")
         sql = """
         CREATE TABLE employee ( 

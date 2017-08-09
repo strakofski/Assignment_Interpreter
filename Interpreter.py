@@ -25,11 +25,24 @@ class Interpreter(Cmd):
 
     # Kris Little
     # - This function loads and saves data to the database
-    def do_save_file_to_database(self, args):
-        print("Saving to database!")
-        file_path = args
-        data = self.file_handler.load_file(file_path)
-        self.database.write_to_database(data)
+    def do_load_from_file(self, args):
+        args = args.split(' ')
+        file_path = ""
+        optn = ""
+        if len(args) == 1:
+            file_path = args[0]
+            data = self.file_handler.load_file(file_path)
+            self.database.write_to_database(data)
+        elif len(args) == 2:
+            file_path = args[1]
+            optn = args[0]
+            if "-d" in optn:
+                data = self.file_handler.load_file(file_path)
+                self.database.write_to_database(data)
+            elif "-g" in optn:
+                print("creating graph")
+            else:
+                print("Invalid option. Refer to help file")
 
     # Kris Little
     # backup the database. This could be changed to use the pickle
@@ -53,11 +66,11 @@ class Interpreter(Cmd):
         print("This will display a graph once Brendan has implemented it!")
         self.database.execute_sql("""select * from employee""")
         data = self.database.cursor.fetchall()
-        filename = "testgraph"
+        filename = args
         new_graph = Graph(data, filename)
         self.graph.append(new_graph)
 
-        # display graph
+        # display graph ? maybe an option in here to not display the graph right away?
 
     def do_list_graphs(self, args):
         for g in range(len(self.graph)):

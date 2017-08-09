@@ -3,7 +3,7 @@
 
 class Graph:
 
-    def __init__(self, data=None, file=None):
+    def __init__(self, data=None, file="default"):
         self.file = file
         self.data = data
 

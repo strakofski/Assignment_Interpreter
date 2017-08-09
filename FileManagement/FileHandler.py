@@ -8,13 +8,18 @@ class FileHandler(IFileHandler):
         # put error handling here
         print("Loading file...")
         contents = []
-        the_file = open(file, 'r')
-        for line in the_file:
-            line = tuple(line.replace('\n', "").split(','))
-            contents.append(line)
-        print(contents)
-        the_file.close()
-        return contents
+        try:
+            the_file = open(file, 'r')
+        except FileNotFoundError as e:
+            print(e)
+            return False
+        else:
+            for line in the_file:
+                line = tuple(line.replace('\n', "").split(','))
+                contents.append(line)
+            print(contents)
+            the_file.close()
+            return contents
 
     def write_file(self, file, data):
         the_file = open(file, 'w')
