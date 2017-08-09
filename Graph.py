@@ -1,7 +1,11 @@
+# Brendan
+
+
 class Graph:
 
-    def __init__(self):
-        self.data = None
+    def __init__(self, data=None, file=None):
+        self.file = file
+        self.data = data
 
     def set_data(self, data):
         self.data = data

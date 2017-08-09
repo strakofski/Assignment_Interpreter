@@ -1,3 +1,10 @@
+# --- Kris Little
+# --- Interpreter Assignment
+# -- This class is used as a database solution for the assignment.
+# -- It implements the IDatabase interface
+#
+#
+
 import sqlite3
 
 from Database.IDatabase import *

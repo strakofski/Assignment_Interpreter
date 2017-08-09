@@ -1,7 +1,3 @@
-from pickle import *
-import os
-
-
 class Controller:
     def __init__(self, view, interpreter):
         self.view = view
@@ -16,3 +12,6 @@ class Controller:
         self.interpreter.prompt = '> '
         self.interpreter.database.setup()
         self.interpreter.cmdloop()
+
+        message = "### Thank you for using Interpreter.\n" \
+                  "### Press any key to close"

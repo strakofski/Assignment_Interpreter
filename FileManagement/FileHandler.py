@@ -43,11 +43,14 @@ class FileHandler(IFileHandler):
     #
     #
     #
-    def pack_pickle(self, file):
+    def pack_pickle(self, obj, file):
         print("code here brendan")
+
     # Brendan
     #
     #
     #
     def unpack_pickle(self, file):
         print("code here brendan")
+
+        return False
