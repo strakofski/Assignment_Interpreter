@@ -1,4 +1,5 @@
 from pickle import *
+import os
 
 
 class Controller:
@@ -11,8 +12,7 @@ class Controller:
                   "### Developed by: Kris, Kate, and Brendan\n" \
                   "### For help, type 'help' for a list of commands"
 
-
         self.view.say(message)
         self.interpreter.prompt = '> '
         self.interpreter.database.setup()
-        self.interpreter.cmdloop('Starting')
+        self.interpreter.cmdloop()
