@@ -14,7 +14,7 @@ class IFileHandler:
     def validate_data(self, data): raise NotImplementedError
 
     @abstractmethod
-    def pack_pickle(self, obj, file): raise NotImplementedError
+    def pack_pickle(self, graphs): raise NotImplementedError
 
     @abstractmethod
     def unpack_pickle(self, file): raise NotImplementedError

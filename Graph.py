@@ -1,14 +1,23 @@
-# Brendan
-
-
 class Graph:
 
-    def __init__(self, data=None, file="default"):
-        self.file = file
-        self.data = data
+    def __init__(self):
+        self.data = None
+        #NEW Brendan
+        self.title = None
+        self.type =None
+        self.colours = None
+        self.labels = None
+        self.angle = None
 
-    def set_data(self, data):
-        self.data = data
+    #CURRENTLY THIS IS DEAD CODE
+    def set_data(self, new_graph):
+        self.data = new_graph.data
+        #NEW Brendan
+        self.title = new_graph.title
+        self.type = new_graph.type
+        self.colours = new_graph.colours
+        self.labels = new_graph.labels
+        self.angle = new_graph.angle
 
     # temp function
     def do_something(self):
