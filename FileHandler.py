@@ -64,7 +64,7 @@ class FileHandler(IFileHandler):
         birthdate = int(mydate[0])
         birthmonth = int(mydate[1])
         birthyear = int(mydate[2])
-        age = today.year - born.year\
+        age = today.year - birthyear\
             - ((today.month, today.day) < (birthmonth, birthdate))
         return age
 
