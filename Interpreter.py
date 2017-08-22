@@ -14,6 +14,7 @@ class Interpreter(Cmd):
         self.database = SQLDatabase()
 
     def do_write_data(self, args):
+        
         convert = tuple(args.split(','))
         data = [convert]
         self.database.write_to_database(data)
@@ -97,10 +98,36 @@ class Interpreter(Cmd):
     # Following this format: help_function
     # e.g. help_write_data(self):
     # for info on what each function does, check out the help.doc file
-    def help_write_data(self):
-        # Example for Kate
-        print("help on write data")
+    def do_about(args):
+        """ 
+        This about command shows user some information about this application 
+        """
+        
+        print("Welcome to Interterpreter \n" +
+              " This application able to read, store and display data \n" +
+              "in a given format \n")
+        
+    def do_help(self, args):
+        """
+         This help command shoes user all available command and its' description
+        """
+        print(" About command: show description about the applciation \n" +
+              "help command: show all command description \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n '
+              " display_data: Show all the data from the database in text form. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " load_from_file: Load data from a file and save it to the database. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " create_graph: NEED INFO TO FILL \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " list_graph: Display a list of graphs. Use this if you need to load a specific\n" +
+              " graph that is active in the system. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " save_graphs: Save existing graphs to a file so they can be loaded again. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " load_graph: Load a grpah from a file provided. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n')
 
-    #
+    
     def emptyline(self):
         pass
