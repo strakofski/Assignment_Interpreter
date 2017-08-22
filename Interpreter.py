@@ -92,12 +92,6 @@ class Interpreter(Cmd):
         filepath = args
         graph = self.file_handler.unpack_pickle(filepath)
         self.graph.append(graph)
-
-    # FORE SOME REASON THIS DOESNT WORK ANYMORE. IDK WHY
-    def do_validate(self):
-        aValidateFile = Validation()
-        a.validate()
-        print('Done')
         
     def do_help(self, args):
         """
@@ -118,8 +112,6 @@ class Interpreter(Cmd):
               " save_graphs: Save existing graphs to a file so they can be loaded again. \n" +
               ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
               " load_graph: Load a grpah from a file provided. \n" +
-              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
-              " validate: Check the format of data and make sure it has no error. \n" +
               ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n')
 
     def emptyline(self):
