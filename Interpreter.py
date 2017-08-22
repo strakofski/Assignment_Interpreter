@@ -2,7 +2,7 @@ from cmd import *
 from Database.SQLDatabase import *
 from FileManagement.FileHandler import *
 from Graph import *
-
+from Validator import *
 
 class Interpreter(Cmd):
 
@@ -93,27 +93,19 @@ class Interpreter(Cmd):
         graph = self.file_handler.unpack_pickle(filepath)
         self.graph.append(graph)
 
-    # Help Commands - Kate
-    # For each of the do_ commands above, print help info about them
-    # Following this format: help_function
-    # e.g. help_write_data(self):
-    # for info on what each function does, check out the help.doc file
-    def do_about(args):
-        """ 
-        This about command shows user some information about this application 
-        """
-        
-        print("Welcome to Interterpreter \n" +
-              " This application able to read, store and display data \n" +
-              "in a given format \n")
+    # FORE SOME REASON THIS DOESNT WORK ANYMORE. IDK WHY
+    def do_validate(self):
+        aValidateFile = Validation()
+        a.validate()
+        print('Done')
         
     def do_help(self, args):
         """
          This help command shoes user all available command and its' description
         """
-        print(" About command: show description about the applciation \n" +
-              "help command: show all command description \n" +
-              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n '
+        print(
+              " help command: show all command description \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
               " display_data: Show all the data from the database in text form. \n" +
               ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
               " load_from_file: Load data from a file and save it to the database. \n" +
@@ -126,8 +118,9 @@ class Interpreter(Cmd):
               " save_graphs: Save existing graphs to a file so they can be loaded again. \n" +
               ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
               " load_graph: Load a grpah from a file provided. \n" +
+              ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n'
+              " validate: Check the format of data and make sure it has no error. \n" +
               ' ++++++++++++++++++++++++++++++++++++++++++++++++ \n')
 
-    
     def emptyline(self):
         pass
